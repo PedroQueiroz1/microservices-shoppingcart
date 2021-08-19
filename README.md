@@ -1,6 +1,7 @@
 # Shoppingcart - a microservice project
-<b>Hello, this is my special project to implements almost everything that I learned from my recents Java Spring Boot courses. 
-This project will be a little overdone because I really want to use as much as possible of the things that I have on my knowledge.</b>
+<b>Hello! This is my special project to implements almost everything that I learned from my recents Java Spring Boot courses. </br>
+This project will be a little overdone because I really want to use as much as possible of the things that I have on my knowledge.</br>
+After this project is done, I'll do a clean version of it.</b>
 
 <h2>Getting started</h2>
 For this project is recommended to have the following technologies: </br>
