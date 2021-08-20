@@ -6,6 +6,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
+/*
+ * I won't use:
+ * - HashCode and Equals
+ * - NoArgsConstructor / AllArgsConstructor
+ */
 
 @Entity
 @Table(name="product")
@@ -13,16 +23,21 @@ public class Product {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name = "id")
 	private Long id;
 	
-	@Column(name="name", nullable = false)
+	@Column(name = "name", nullable = false)
+	@NotBlank(message = "Name")
+	@Length(min = 3, max = 150, message = "Name")
 	private String name;
 	
-	@Column(name="description", nullable = false)
+	@Column(name = "description", nullable = false)
+	@NotBlank(message = "Name")
+	@Length(min = 3, max = 255, message = "Description")
 	private String description;
 	
-	@Column(name="price", nullable = false)
+	@Column(name = "price", nullable = false)
+	@NotNull(message = "Price")
 	private Double price;
 
 	public Long getId() {

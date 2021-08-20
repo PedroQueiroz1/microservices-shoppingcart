@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.shoppingcart.app.dto.ProductResponseDTO;
 import com.shoppingcart.app.entity.Product;
-import com.shoppingcart.app.response.ProductResponse;
 import com.shoppingcart.app.service.ProductService;
 
 @RestController
@@ -21,10 +21,10 @@ public class ProductController {
 	private ProductService productService;
 	
 	@GetMapping("/getById/{id}")
-	public ResponseEntity<ProductResponse> getById(@PathVariable("id") Long id) {
+	public ResponseEntity<ProductResponseDTO> getById(@PathVariable("id") Long id) {
 		Optional<Product> product = productService.getById(id); 
 		return product.isPresent()?ResponseEntity
-				.ok(ProductResponse.convertToProductResponseDTO(product.get()))
+				.ok(ProductResponseDTO.convertToProductResponseDTO(product.get()))
 						:ResponseEntity.notFound().build();
 	}
 	

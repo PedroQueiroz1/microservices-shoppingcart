@@ -27,7 +27,16 @@ public class ProductService {
 	
 	//modificar para ver se existe? chegar no curso udemy
 	public Product create(Product product) {
+		
 		return productRepository.save(product);
 	}
 	
+	
+	public void CheckIfItAlreadyExists(Product product) {
+		Product productByName = productRepository.findByName(product.getName());
+		if(productByName != null && productByName.getId() != product.getId()) {
+			throw new RuntimeException(
+			String.format("The product %s is already registered", product.getName().toUpperCase()));
+		}
+	}
 }

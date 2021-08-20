@@ -1,8 +1,8 @@
-package com.shoppingcart.app.response;
+package com.shoppingcart.app.dto;
 
 import com.shoppingcart.app.entity.Product;
 
-public class ProductResponse {
+public class ProductResponseDTO {
 
 	private Long id;
 	
@@ -12,12 +12,12 @@ public class ProductResponse {
 	
 	private Double price;
 
-	public static ProductResponse convertToProductResponseDTO(Product product) {
-		return new ProductResponse(product.getId(),product.getName(),product.getDescription(),
+	public static ProductResponseDTO convertToProductResponseDTO(Product product) {
+		return new ProductResponseDTO(product.getId(),product.getName(),product.getDescription(),
 				product.getPrice());
 	}
 
-	public ProductResponse(Long id, String name, String description, Double price) {
+	public ProductResponseDTO(Long id, String name, String description, Double price) {
 		this.id = id;
 		this.name = name;
 		this.description = description;

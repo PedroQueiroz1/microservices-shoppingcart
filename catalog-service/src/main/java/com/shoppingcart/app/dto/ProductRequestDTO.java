@@ -1,6 +1,6 @@
-package com.shoppingcart.app.request;
+package com.shoppingcart.app.dto;
 
-public class CreateProductRequest {
+public class ProductRequestDTO {
 
 	private String name;
 	
