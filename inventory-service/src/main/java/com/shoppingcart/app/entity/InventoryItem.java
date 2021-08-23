@@ -9,11 +9,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-/*
- * I won't use:
- * - HashCode and Equals
- * - NoArgsConstructor / AllArgsConstructor
- */
 
 @Entity
 @Table(name="inventory")
@@ -28,7 +23,7 @@ public class InventoryItem {
 	@NotNull(message = "ProductId")
 	private Long productId;
 	
-	@Column(name = "Quantity", nullable = false)
+	@Column(name = "quantity", nullable = false)
 	@NotNull(message = "Quantity")
 	@Min(value = 0, message = "Quantity")
 	private Integer quantity;

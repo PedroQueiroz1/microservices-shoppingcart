@@ -7,6 +7,8 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+//@EnableFeignClients("com.shoppingcart.app.feignclients")
+
 @SpringBootApplication
 @EnableJpaRepositories("com.shoppingcart.app.repository")
 @EntityScan("com.shoppingcart.app.entity")

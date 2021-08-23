@@ -20,23 +20,33 @@ public class ProductService {
 	
 	
 	public Optional<Product> getById(Long id) {
-		logger.info("Request to getById received!!! Id: "+id);
+		logger.info("Request to 'getById' received!!! Id: "+id);
 		
 		return productRepository.findById(id);
 	}
 	
-	//modificar para ver se existe? chegar no curso udemy
-	public Product create(Product product) {
+	
+	public Optional<Product> getByName(String name){
+		logger.info("Request to 'getByName' received!!! Name: "+name);
 		
+		return productRepository.findByName(name.trim().toUpperCase());
+	}
+	
+	
+	public Product createProduct(Product product) {
+		logger.info("Request to 'createProduct' received!!! Product_Id: "
+	+product.getId() + " Product_Name: "+product.getName());
+		CheckIfItAlreadyExists(product);
 		return productRepository.save(product);
 	}
 	
 	
-	public void CheckIfItAlreadyExists(Product product) {
-		Product productByName = productRepository.findByName(product.getName());
-		if(productByName != null && productByName.getId() != product.getId()) {
+	public void CheckIfItAlreadyExists(Product createdProduct) {
+		Optional<Product> product = productRepository.findByName(createdProduct.getName());
+		Product productByName = product.get();
+		if(productByName != null && productByName.getId() != createdProduct.getId()) {
 			throw new RuntimeException(
-			String.format("The product %s is already registered", product.getName().toUpperCase()));
+			String.format("The product %s is already registered", createdProduct.getName().toUpperCase()));
 		}
 	}
 }

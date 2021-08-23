@@ -11,11 +11,6 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
-/*
- * I won't use:
- * - HashCode and Equals
- * - NoArgsConstructor / AllArgsConstructor
- */
 
 @Entity
 @Table(name="product")
@@ -32,7 +27,7 @@ public class Product {
 	private String name;
 	
 	@Column(name = "description", nullable = false)
-	@NotBlank(message = "Name")
+	@NotBlank(message = "Description")
 	@Length(min = 3, max = 255, message = "Description")
 	private String description;
 	

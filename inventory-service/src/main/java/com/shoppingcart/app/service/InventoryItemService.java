@@ -26,5 +26,4 @@ public class InventoryItemService {
 		return inventoryItemRepository.findById(id);
 	}
 	
-	
 }

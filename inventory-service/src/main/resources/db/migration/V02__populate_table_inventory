@@ -1,0 +1,4 @@
+INSERT INTO inventory ('product_id','quantity') VALUES 
+(1,10),
+(2,34),
+(3,5);
