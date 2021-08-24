@@ -28,7 +28,7 @@ public class Product {
 	
 	@Column(name = "description", nullable = false)
 	@NotBlank(message = "Description")
-	@Length(min = 3, max = 255, message = "Description")
+	@Length(min = 3, max = 200, message = "Description")
 	private String description;
 	
 	@Column(name = "price", nullable = false)

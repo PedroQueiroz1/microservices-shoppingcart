@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.shoppingcart.app.dto.InventoryItemResponseDTO;
 import com.shoppingcart.app.entity.InventoryItem;
 import com.shoppingcart.app.repository.InventoryItemRepository;
 
@@ -18,12 +19,20 @@ public class InventoryItemService {
 	
 	Logger logger = LoggerFactory.getLogger(InventoryItemService.class);
 	
+	@Autowired
+	private CommonService commonService;
 	
-	public Optional<InventoryItem> getById(Long id){
+	
+	public InventoryItemResponseDTO getById(Long id){
 	
 		logger.info("Request to 'getById' received!!! Id: "+id);
 		
-		return inventoryItemRepository.findById(id);
+		Optional<InventoryItem> inventory = inventoryItemRepository.findById(id);
+		InventoryItemResponseDTO inventoryResponse = InventoryItemResponseDTO.convertToResponseDTO(inventory.get());
+		
+		inventoryResponse.setProductResponse(commonService.getProductById(inventory.get().getId()));
+		
+		return inventoryResponse;
 	}
 	
 }

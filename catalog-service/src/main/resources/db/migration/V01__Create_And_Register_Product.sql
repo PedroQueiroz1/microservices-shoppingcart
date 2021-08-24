@@ -1,8 +1,8 @@
 CREATE TABLE product (
-id BIGINT PRIMARY KEY AUTO_INCREMENT,
-name VARCHAR NOT NULL,
-description VARCHAR NOT NULL,
-price DECIMAL(10,2) NOT NULL
+	id BIGINT PRIMARY KEY AUTO_INCREMENT,
+	name VARCHAR(150) NOT NULL,
+	description VARCHAR(200) NOT NULL,
+	price DECIMAL(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 INSERT INTO product (name,description,price) VALUES ('Estojo','Estojo grande para guardar material','10.00');

@@ -6,24 +6,25 @@ public class InventoryItemResponseDTO {
 
 	private Long id;
 	
-	private Long productId;
+	private ProductResponseDTO productResponse;
 	
 	private Integer quantity;
 
+	//Maybe productResponse.get...
 	public static InventoryItemResponseDTO convertToResponseDTO(InventoryItem inventoryItem) {
-		return new InventoryItemResponseDTO(inventoryItem.getId(),
-				inventoryItem.getProductId(), inventoryItem.getQuantity());
+		return new InventoryItemResponseDTO(inventoryItem.getId(), inventoryItem.getQuantity());
 	}
+
 	
-	
-	public InventoryItemResponseDTO(Long id, Long productId, Integer quantity) {
+	public InventoryItemResponseDTO(Long id, Integer quantity) {
 		this.id = id;
-		this.productId = productId;
 		this.quantity = quantity;
 	}
 
+	public InventoryItemResponseDTO() {
+	}
 
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -32,12 +33,12 @@ public class InventoryItemResponseDTO {
 		this.id = id;
 	}
 
-	public Long getProductId() {
-		return productId;
+	public ProductResponseDTO getProductResponse() {
+		return productResponse;
 	}
 
-	public void setProductId(Long productId) {
-		this.productId = productId;
+	public void setProductResponse(ProductResponseDTO productResponse) {
+		this.productResponse = productResponse;
 	}
 
 	public Integer getQuantity() {
@@ -47,6 +48,5 @@ public class InventoryItemResponseDTO {
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
-	
 	
 }

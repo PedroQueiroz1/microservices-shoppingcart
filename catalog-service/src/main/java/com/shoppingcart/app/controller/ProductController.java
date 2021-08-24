@@ -14,6 +14,10 @@ import com.shoppingcart.app.dto.ProductResponseDTO;
 import com.shoppingcart.app.entity.Product;
 import com.shoppingcart.app.service.ProductService;
 
+/*
+ * Bean Validation -> create
+ */
+
 @RestController
 @RequestMapping("/api/catalog")
 public class ProductController {
