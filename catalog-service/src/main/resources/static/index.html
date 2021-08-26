@@ -5,29 +5,79 @@
 <title>ShoppingCart API</title>
 
 
- <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<!-- Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
 
 </head>
 <body>
-<h3>Spring Boot REST API microservices project</h3>
+	<h3>Spring Boot REST API microservices project</h3>
 
-<form action="" id="formSignInProduct"></form>
-<div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Name</label>
-  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name">
-</div>
+	<form action="" id="formSignInProduct">
+		<div class="mb-3">
+			<label for="id" class="form-label">Id</label> <input type="text"
+				class="form-control" id="id" readonly="readonly">
+		</div>
 
-<div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Description</label>
-  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="description">
-</div>
+		<div class="mb-3">
+			<label for="name" class="form-label">Name</label> <input type="text"
+				class="form-control" id="name" placeholder="name">
+		</div>
 
-<div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Price</label>
-  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="price">
-</div>
- <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+		<div class="mb-3">
+			<label for="description" class="form-label">Description</label> <input
+				type="text" class="form-control" id="description"
+				placeholder="description">
+		</div>
+
+		<div class="mb-3">
+			<label for="price" class="form-label">Price</label> <input
+				type="number" class="form-control" id="price"
+				placeholder="example: 10.99">
+		</div>
+	</form>
+
+	<button type="button" class="btn btn-primary" onclick="create()">Register</button>
+
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		crossorigin="anonymous"></script>
+	<!-- Option 1: Bootstrap Bundle with Popper -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+
+	<script type="text/javascript">
+	function create(){
+		var id = $("#name").val();
+		var name = $("#name").val();
+		var description = $("#description").val();
+		var price = $("#price").val();
+		
+		$.ajax({
+			method: "POST",
+			url: "http://localhost:8765/catalog-service/api/catalog/create",
+			data: JSON.stringify({
+				id : id, 
+				name : name, 
+				description : description,
+				price : price}),
+			contentType: "application/json; charset=utf-8",
+			success: function (response) {
+				alert("Success!")
+			}
+		}).fail(function (xhr, status, errorThrown){
+			alert("Error! " + xhr.responseText);
+		});
+		
+	}
+
+</script>
+
 </body>
 </html>
