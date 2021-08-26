@@ -1,5 +1,7 @@
 package com.shoppingcart.app.dto;
 
+import com.shoppingcart.app.entity.Product;
+
 public class ProductRequestDTO {
 
 	private String name;
@@ -8,6 +10,9 @@ public class ProductRequestDTO {
 	
 	private Double price;
 	
+	public Product convertToEntity() {
+		return new Product(name,description,price);
+	}
 	
 	public String getName() {
 		return name;

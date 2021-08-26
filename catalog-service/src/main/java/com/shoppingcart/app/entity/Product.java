@@ -1,5 +1,7 @@
 package com.shoppingcart.app.entity;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,6 +36,15 @@ public class Product {
 	@Column(name = "price", nullable = false)
 	@NotNull(message = "Price")
 	private Double price;
+	
+	public Product(String name,	String description,	Double price) {
+		this.name = name;
+		this.description = description;
+		this.price = price;
+	}
+
+	public Product() {
+	}
 
 	public Long getId() {
 		return id;
@@ -67,5 +78,24 @@ public class Product {
 		this.price = price;
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(description, id, name, price);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Product other = (Product) obj;
+		return Objects.equals(description, other.description) && Objects.equals(id, other.id)
+				&& Objects.equals(name, other.name) && Objects.equals(price, other.price);
+	}
+
+	
 	
 }
