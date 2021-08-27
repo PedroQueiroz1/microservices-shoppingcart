@@ -47,7 +47,7 @@ public class ProductController {
 				.convertToProductResponseDTO(product));
 	}
 	
-	@PostMapping(value = "create")
+	@PostMapping("/create")
 	@ResponseBody
 	public ResponseEntity<ProductResponseDTO> create(
 			@Valid @RequestBody ProductRequestDTO productRequest){

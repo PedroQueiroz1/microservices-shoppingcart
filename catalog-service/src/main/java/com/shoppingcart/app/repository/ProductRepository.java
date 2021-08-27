@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import com.shoppingcart.app.entity.Product;
 
+//Should use Optional on findByName
+
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long>{
 	

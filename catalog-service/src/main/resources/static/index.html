@@ -38,9 +38,62 @@
 				type="number" class="form-control" id="price"
 				placeholder="example: 10.99">
 		</div>
+		
+
 	</form>
 
 	<button type="button" class="btn btn-primary" onclick="create()">Register</button>
+
+	<button type="button" class="btn btn-secondary"
+		onclick="document.getElementById('formSignInProduct').reset();">Reset</button>
+
+	<button type="button" class="btn btn-danger" data-bs-toggle="modal"
+		data-bs-target="#modal-search-product">Search</button>
+
+
+
+
+
+
+	<div class="modal fade" id="modal-search-product" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Search product</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="mb-3">
+							<label for="product-name" class="col-form-label">Product
+								name:</label> <input type="text" class="form-control" id="productName">
+						</div>
+					</form>
+					<table class="table" id="resultTable">
+						<thead>
+							<tr>
+								<th scope="col">ID</th>
+								<th scope="col">Name</th>
+								<th scope="col">Description</th>
+								<th scope="col">Price</th>
+								<th scope="col">Edit</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-info"
+						onclick="searchProduct()">Search</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -53,31 +106,54 @@
 		crossorigin="anonymous"></script>
 
 	<script type="text/javascript">
-	function create(){
-		var id = $("#name").val();
-		var name = $("#name").val();
-		var description = $("#description").val();
-		var price = $("#price").val();
-		
-		$.ajax({
-			method: "POST",
-			url: "http://localhost:8765/catalog-service/api/catalog/create",
-			data: JSON.stringify({
-				id : id, 
-				name : name, 
-				description : description,
-				price : price}),
-			contentType: "application/json; charset=utf-8",
-			success: function (response) {
-				alert("Success!")
+		function searchProduct() {
+			var name = $('#productName').val();
+
+			if (name != null && name.trim() != '') {
+
+				$
+						.ajax(
+								{
+									method : "GET",
+									url : "http://localhost:8765/catalog-service/api/catalog/getByName/"+name,
+									data : "name=" + name,
+									success : function(response) {
+									$('#resultTable > tbody > tr').remove();
+									
+									$('#resultTable > tbody').append('<tr><td>'+response.id+'</td><td>'+response.name+'</td><td>'+response.description+'</td><td>'+response.price+'</td><td><button type="button" class="btn btn-warning">Copy</button></td></tr>');
+									}
+								}).fail(function(xhr, status, errorThrown) {
+							alert("Error! " + xhr.responseText);
+						});
+
 			}
-		}).fail(function (xhr, status, errorThrown){
-			alert("Error! " + xhr.responseText);
-		});
-		
-	}
+		}
 
-</script>
+		function create() {
+			var id = $("#name").val();
+			var name = $("#name").val();
+			var description = $("#description").val();
+			var price = $("#price").val();
 
+			$
+					.ajax(
+							{
+								method : "POST",
+								url : "http://localhost:8765/catalog-service/api/catalog/create",
+								data : JSON.stringify({
+									id : id,
+									name : name,
+									description : description,
+									price : price
+								}),
+								contentType : "application/json; charset=utf-8",
+								success : function(response) {
+									alert("Success!")
+								}
+							}).fail(function(xhr, status, errorThrown) {
+						alert("Error! " + xhr.responseText);
+					});
+		}
+	</script>
 </body>
 </html>
