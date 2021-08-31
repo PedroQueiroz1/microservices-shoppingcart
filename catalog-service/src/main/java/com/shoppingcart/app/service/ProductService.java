@@ -77,6 +77,33 @@ public class ProductService {
 	}
 	
 	
+	public Product update(Long id, Product product) {
+		
+		logger.info("Request to 'update' received!!! Product_Id: "+id);
+		
+		Product productToModifie = checkIfExists(id);
+		
+		validateDuplicatedProduct(product);
+		BeanUtils.copyProperties(product, productToModifie, "id");
+		
+		return productRepository.save(productToModifie);
+		
+	}
+	
+	
+	public void deleteById(Long id) {
+		logger.info("Request to 'deleteById' received!!! Product_Id: "+id);
+		
+		productRepository.deleteById(id);
+	}
+	
+	public void deleteByName(String name) {
+		logger.info("Request to 'deleteByName' received!!! Product_name: "+name);
+		
+		productRepository.deleteByName(name);
+	}
+	
+	
 	private void validateDuplicatedProduct(Product product) {
 		
 		Product productFind = productRepository.findByName(product.getName());

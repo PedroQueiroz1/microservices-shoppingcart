@@ -16,4 +16,6 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
 	
 	Product deleteByName(String name);
 	
+	Product deleteByName(String name);
+	
 }

@@ -43,7 +43,10 @@ public class ProductController {
 	}
 	
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 	
 	@GetMapping("/getByName/{name}")
 	@ResponseBody
