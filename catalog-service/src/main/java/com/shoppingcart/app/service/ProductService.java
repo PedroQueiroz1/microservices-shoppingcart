@@ -4,7 +4,6 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,13 +41,13 @@ public class ProductService {
 	}
 	
 	
-<<<<<<< Updated upstream
 	public void CheckIfItAlreadyExists(Product createdProduct) {
 		Optional<Product> product = productRepository.findByName(createdProduct.getName());
 		Product productByName = product.get();
 		if(productByName != null && productByName.getId() != createdProduct.getId()) {
 			throw new RuntimeException(
 			String.format("The product %s is already registered", createdProduct.getName().toUpperCase()));
+<<<<<<< HEAD
 =======
 	public Product update(Long id, Product product) {
 		
@@ -139,6 +138,8 @@ public class ProductService {
 			throw new BusinessRuleException(String.format("The following product is"
 					+ " already registered: %s.", product.getName().toUpperCase())); 
 >>>>>>> Stashed changes
+=======
+>>>>>>> parent of 01093de... Modifying index file and adding css
 		}
 	}
 }
