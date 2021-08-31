@@ -38,15 +38,36 @@ public class ProductController {
 						:ResponseEntity.notFound().build();
 	}
 	
+<<<<<<< HEAD
 	@GetMapping("/getByName/{name}")
 	@ResponseBody
 	public ResponseEntity<ProductResponseDTO> getByName(@PathVariable("name") String name){
+=======
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+	
+	@GetMapping("/getByName/{name}")
+	@ResponseBody
+	public ResponseEntity<ProductResponseDTO> getByName(@PathVariable("name") String name){
+	
+>>>>>>> develop
 		Product product = productService.getByName(name);
 		
 		return ResponseEntity.ok(ProductResponseDTO
 				.convertToProductResponseDTO(product));
 	}
 	
+<<<<<<< HEAD
+=======
+	
+>>>>>>> develop
 	@PostMapping("/create")
 	@ResponseBody
 	public ResponseEntity<ProductResponseDTO> create(
@@ -59,5 +80,38 @@ public class ProductController {
 				.status(HttpStatus.CREATED)
 				.body(ProductResponseDTO.convertToProductResponseDTO(product));
 	}
+<<<<<<< HEAD
 	
+=======
+		
+	
+	@PutMapping("/update/{id}")
+	@ResponseBody
+	public ResponseEntity<ProductResponseDTO> update(@PathVariable("id") Long id,
+			@Valid @RequestBody ProductRequestDTO productRequest){
+		
+		var productUpdate = productService.update(id, productRequest.convertToEntity());
+		
+		return ResponseEntity.ok(ProductResponseDTO.convertToProductResponseDTO(productUpdate)); 
+		
+	}	
+	
+	
+	@DeleteMapping("/deleteById/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteById(@PathVariable("id") Long id) {
+		productService.deleteById(id);
+	}
+	
+	
+	@DeleteMapping("/deleteByName/{name}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteByName(@PathVariable("name") String name) {
+		productService.deleteByName(name);
+	}
+	
+>>>>>>> Stashed changes
+=======
+>>>>>>> parent of 01093de... Modifying index file and adding css
+>>>>>>> develop
 }
