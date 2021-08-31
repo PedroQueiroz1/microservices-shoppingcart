@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,12 +42,49 @@ public class ProductService {
 	}
 	
 	
+<<<<<<< Updated upstream
 	public void CheckIfItAlreadyExists(Product createdProduct) {
 		Optional<Product> product = productRepository.findByName(createdProduct.getName());
 		Product productByName = product.get();
 		if(productByName != null && productByName.getId() != createdProduct.getId()) {
 			throw new RuntimeException(
 			String.format("The product %s is already registered", createdProduct.getName().toUpperCase()));
+=======
+	public Product update(Long id, Product product) {
+		
+		logger.info("Request to 'update' received!!! Product_Id: "+id);
+		
+		Product productToModifie = checkIfExists(id);
+		
+		validateDuplicatedProduct(product);
+		BeanUtils.copyProperties(product, productToModifie, "id");
+		
+		return productRepository.save(productToModifie);
+		
+	}
+	
+	
+	public void deleteById(Long id) {
+		logger.info("Request to 'deleteById' received!!! Product_Id: "+id);
+		
+		productRepository.deleteById(id);
+	}
+	
+	public void deleteByName(String name) {
+		logger.info("Request to 'deleteByName' received!!! Product_name: "+name);
+		
+		productRepository.deleteByName(name);
+	}
+	
+	
+	private void validateDuplicatedProduct(Product product) {
+		
+		Product productFind = productRepository.findByName(product.getName());
+		
+		if(productFind != null && productFind.getId() != product.getId()) {
+			throw new BusinessRuleException(String.format("The following product is"
+					+ " already registered: %s.", product.getName().toUpperCase())); 
+>>>>>>> Stashed changes
 		}
 	}
 }

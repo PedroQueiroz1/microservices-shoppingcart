@@ -14,4 +14,6 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
 	@Query(value = "select p from Product p where upper(trim(p.name)) like %?1%")
 	public Optional<Product> findByName(String name);
 	
+	Product deleteByName(String name);
+	
 }
